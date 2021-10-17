@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+
+<body>
+    <div id="container" class="page-container">
+        <header class="page-header">
+            <div class="page-nav">
+                <img src="./img/weibo.svg" alt="" class="logo">
+                <input type="text" class="search" placeholder="搜索微博">
+                <ul class="nav-list">
+                    <li v-for="(item,ind) in navList" class="nav-list-item">
+                        <img :src="ind<4?item.icon:user.avatar" :title="ind<4?item.title:user.name">
+                    </li>
+                </ul>
+                <ul class="action-list">
+                    <li v-for="item in actionList" class="action-list-item">
+                        <img :src="item.icon" alt="" :title="item.title" @click="buttonClick(item.id)">
+                    </li>
+                </ul>
+            </div>
+
+        </header>
+        <main class="page-main">
+            <div class="page-left">
+                <h2 class="left-title">个人主页</h2>
+                <ul class="left-list">
+                    <li v-for="item in homeList" class="left-list-item">
+                        <img :src="item.icon">
+                        <span>{{item.title}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="page-center">
+                <div class="center-top">
+                    <div class="top-back">
+                        <img :src="user.back" alt="">
+                    </div>
+                    <div class="top-title">
+                        <div class="top-avatar">
+                            <img :src="user.avatar" alt="">
+                        </div>
+                        <div class="top-info">
+                            <p>
+                                <span>{{user.name}}</span>
+                                <img src="" alt="">
+                            </p>
+                            <p>
+                                <span>粉丝</span>
+                                <span>{{user.followers}}</span>
+                                <span>关注</span>
+                                <span>{{user.following}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="top-desc">
+                        <img src="./img/sign.svg" alt="">
+                        <span>{{user.desc}}</span>
+                    </div>
+                    <ul class="top-tab">
+                        <li class="top-tab-item" v-for="item in tabList">{{item}}</li>
+                    </ul>
+                </div>
+                <div class="center-content">
+                    <div class="content-title">全部微博（{{user.weibo.length}}）</div>
+                    <ul>
+                        <li v-for="(item,index) in user.weibo" class="weibo-panel">
+                            <header class="weibo-header">
+                                <div class="weibo-avatar">
+                                    <img :src="user.avatar" alt="">
+                                </div>
+                                <div class="weibo-info">
+                                    <p>{{user.name}}</p>
+                                    <p>
+                                        <span>{{item.datetime}}</span>
+                                        <span>来自</span>
+                                        <span>{{item.client}}</span>
+                                    </p>
+                                </div>
+                                <div class="weibo-delete">
+                                    <img src="img/delete.svg" @click="deleteWeibo(index)">
+                                </div>
+                            </header>
+                            <div class="weibo-content">{{item.content}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page-right">
+                <div class="right-title">喜欢的电影</div>
+                <ul class="right-list">
+                    <li v-for="item in user.movies" class="right-list-item">
+                        <img :src="item.cover">
+                        <p>{{item.name}}</p>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="pagebot-right">
+                <div class="right-title">喜欢的音乐</div>
+                <ul class="rightbot-list">
+                    <li v-for="item in user.music" class="rightbot-list-item">
+                        <img :src="item.cover">
+                    </li>
+                </ul>
+
+            </div>
+        </main>
+        <div class="message-box-shadow" v-show="showBox">
+            <div class="message-box">
+                <div class="message-box-header">
+                    <span>快捷发布</span>
+                    <img src="./img/delete.svg" @click="showBox=false">
+                </div>
+                <div class="message-box-content">
+                    <textarea placeholder="有什么新鲜事想分享给大家？" v-model="inputValue"></textarea>
+                </div>
+                <div class="message-box-footer">
+                    <input type="button" value="发送" @click="saveWeibo">
+                </div>
+            </div>
+
+        </div>
+        <h2 class="page-tip">红框里的按钮可以操作</h2>
+    </div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="./js/index.js"></script>
+
+</html>
