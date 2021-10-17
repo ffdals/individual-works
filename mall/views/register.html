@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>京东欢迎您! &nbsp;</li>
+                    <li>
+                        <a href="/index">首页</a>&nbsp;
+                        <a href="/login">登录</a>&nbsp;
+                        <a href="/register" class="style_red">免费注册</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fr">
+                <ul>
+                    <li>我的订单</li>
+                    <li></li>
+                    <li class="arrow-icon">我的京东</li>
+                    <li></li>
+                    <li>京东会员</li>
+                    <li></li>
+                    <li>企业采购</li>
+                    <li></li>
+                    <li class="arrow-icon">关注京东</li>
+                    <li></li>
+                    <li class="arrow-icon">客户服务</li>
+                    <li></li>
+                    <li class="arrow-icon">网站导航</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="w">
+        <div class="head">
+            <img src="images/logo.png" alt="">
+        </div>
+        <div class="register">
+            <h3>注册新用户</h3>
+            <div class="reg_form">
+                <form action="">
+                    <ul>
+                        <li>
+                            <label for="tel">手机号:</label>
+                            <input type="text" class="inp" id="tel">
+                            <span class="error"><i class="error_icon"></i><span class="error_msg"></span></span>
+                            <span class="success"><i class="success_icon"></i>手机号输入正确</span>
+                        </li>
+                        <li>
+                            <label for="">昵称:</label>
+                            <input type="text" class="inp" id="nc">
+                            <span class="error"><i class="error_icon"></i><span class="error_msg"></span></span>
+                            <span class="success"><i class="success_icon"></i>昵称输入正确</span>
+                        </li>
+                        <li>
+                            <label for="">登陆密码:</label>
+                            <input type="text" class="inp" id="pwd">
+                            <span class="error"><i class="error_icon"></i><span class="error_msg"></span></span>
+                            <span class="success"><i class="success_icon"></i>密码输入正确</span>
+                        </li>
+                        <li>
+                            <label for="">确认密码:</label>
+                            <input type="text" class="inp" id="surepwd">
+                            <span class="error"><i class="error_icon"></i><span class="error_msg"></span></span>
+                            <span class="success"><i class="success_icon"></i>确认密码输入正确</span>
+                        </li>
+                        <li class="agree">
+                            <input type="checkbox" id="agreement">同意协议并注册
+                            <a href="#">《用户协议》</a>
+                        </li>
+                        <li>
+                            <input type="button" value="完成注册" class="over" id="signUp">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div class="mod_copyright">
+            <div class="links">
+                <a href="#">关于我们</a> | <a href="#">联系我们</a> | 联系客服 | 商家入驻 | 营销中心 | 手机京东 | 友情链接 | 销售联盟 | 京东社区 | 京东公益 | English Site | Contact U
+            </div>
+            <div>
+                地址：北京市快乐区高兴城开心路路幸福办公楼 邮编：000000 电话：000-000-0000 传真：000-00000000 邮箱: 0000000000@qq.com <br> 京ICP备00000000号京公网安备000000000000
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+        function checkData(type) {
+            var success = true;
+            var tel = $('#tel').val();
+            var nc = $('#nc').val();
+            var pwd = $('#pwd').val();
+            var surepwd = $('#surepwd').val();
+            if (tel == '') {
+                success = false;
+                $('#tel').siblings('span.error').children('span.error_msg').html('手机号不能为空');
+                $('#tel').siblings('span.success').hide();
+                $('#tel').siblings('span.error').show();
+            } else if (!(/^1[\d]{10}$/.test(tel))) {
+                success = false;
+                $('#tel').siblings('span.error').children('span.error_msg').html('手机号格式不正确');
+                $('#tel').siblings('span.success').hide();
+                $('#tel').siblings('span.error').show();
+            } else {
+                $('#tel').siblings('span.error').hide();
+                $('#tel').siblings('span.success').show();
+            }
+            if (type == 'tel') return;
+            if (nc == '') {
+                success = false;
+                $('#nc').siblings('span.error').children('span.error_msg').html('昵称不能为空');
+                $('#nc').siblings('span.success').hide();
+                $('#nc').siblings('span.error').show();
+            } else {
+                $('#nc').siblings('span.error').hide();
+                $('#nc').siblings('span.success').show();
+            }
+            if (type == 'nc') return;
+            if (pwd == '') {
+                success = false;
+                $('#pwd').siblings('span.error').children('span.error_msg').html('密码不能为空');
+                $('#pwd').siblings('span.success').hide();
+                $('#pwd').siblings('span.error').show();
+            } else if (surepwd && surepwd != pwd) {
+                success = false;
+                $('#pwd,#surepwd').siblings('span.error').children('span.error_msg').html('两次输入密码不一致');
+                $('#pwd,#surepwd').siblings('span.success').hide();
+                $('#pwd,#surepwd').siblings('span.error').show();
+            } else {
+                $('#pwd').siblings('span.error').hide();
+                $('#pwd').siblings('span.success').show();
+            }
+            if (type == 'pwd') return;
+            if (surepwd == '') {
+                success = false;
+                $('#surepwd').siblings('span.error').children('span.error_msg').html('请再次输入密码');
+                $('#surepwd').siblings('span.success').hide();
+                $('#surepwd').siblings('span.error').show();
+            } else if (surepwd != pwd) {
+                success = false;
+                $('#pwd,#surepwd').siblings('span.error').children('span.error_msg').html('两次输入密码不一致');
+                $('#pwd,#surepwd').siblings('span.success').hide();
+                $('#pwd,#surepwd').siblings('span.error').show();
+            } else {
+                $('#surepwd').siblings('span.error').hide();
+                $('#surepwd').siblings('span.success').show();
+            }
+            if (type == 'surepwd') return;
+            if (success) {
+                var agreement = $('#agreement').prop('checked');
+                if (!agreement) {
+                    success = false;
+                    alert('请查看并勾选用户协议');
+                }
+            }
+            return success;
+        }
+
+        $('#tel').change(function() {
+            checkData('tel');
+        });
+        $('#nc').change(function() {
+            checkData('nc');
+        });
+        $('#pwd').change(function() {
+            checkData('pwd');
+        });
+        $('#surepwd').change(function() {
+            checkData('surepwd');
+        });
+
+
+        $('#signUp').click(function() {
+            var success = checkData('save');
+            if (success) {
+                let userId = Math.round(Math.random() * 1000);
+                let nc = $('#nc').val();
+                let pwd = $('#pwd').val();
+                let tel = $('#tel').val();
+                let data = 'id=' + userId + '&name=' + nc + '&password=' + pwd + '&mobile=' + tel;
+                $.ajax({
+                    url: '/users/register',
+                    type: 'post',
+                    data: data,
+                    success(res) {
+                        alert(res.message);
+                        if (res.code == 200) {
+                            window.location.href = '/login';
+                        }
+                    }
+                })
+            }
+
+        })
+    })
+</script>
+</html

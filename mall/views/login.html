@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+    <section class="shortcut">
+        <div class="w">
+            <div class="fl">
+                <ul>
+                    <li>京东欢迎您! &nbsp;</li>
+                    <li>
+                        <a href="/index">首页</a>&nbsp;
+                        <a href="/login">登录</a>&nbsp;
+                        <a href="/register" class="style_red">免费注册</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fr">
+                <ul>
+                    <li>我的订单</li>
+                    <li></li>
+                    <li class="arrow-icon">我的京东</li>
+                    <li></li>
+                    <li>京东会员</li>
+                    <li></li>
+                    <li>企业采购</li>
+                    <li></li>
+                    <li class="arrow-icon">关注京东</li>
+                    <li></li>
+                    <li class="arrow-icon">客户服务</li>
+                    <li></li>
+                    <li class="arrow-icon">网站导航</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="w">
+        <div class="head">
+            <img src="images/logo.png" alt="">
+        </div>
+        <div class="register">
+            <h3>用户登录</h3>
+            <div class="reg_form">
+                <form action="">
+                    <ul>
+                        <li>
+                            <label for="">昵称:</label>
+                            <input type="text" class="inp" id="nc">
+                            <span class="success"><i class="success_icon"></i>短信验证码输入正确</span>
+                        </li>
+
+                        <li>
+                            <label for="">密码:</label>
+                            <input type="text" class="inp" id="pwd">
+                            <span class="error"><i class="error_icon"></i>格式不正确，请从新输入</span>
+                        </li>
+                        <li>
+                            <input id="login" type="button" value="登  录" class="over">
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div class="mod_copyright">
+            <div class="links">
+                <a href="#">关于我们</a> | <a href="#">联系我们</a> | 联系客服 | 商家入驻 | 营销中心 | 手机京东 | 友情链接 | 销售联盟 | 京东社区 | 京东公益 | English Site | Contact U
+            </div>
+            <div>
+                地址：北京市快乐区高兴城开心路路幸福办公楼 邮编：000000 电话：000-000-0000 传真：000-00000000 邮箱: 0000000000@qq.com <br> 京ICP备00000000号京公网安备000000000000
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/jquery-3.6.0.min.js"></script>
+<script>
+    $(function() {
+        $('#login').click(function() {
+            let userName = $('#nc').val();
+            let password = $('#pwd').val();
+            let data = 'name=' + userName + '&password=' + password;
+            $.ajax({
+                url: '/users/login',
+                type: 'post',
+                data: data,
+                success(res) {
+                    alert(res.message);
+                    if (res.code == 200) {
+                        window.location.href = '/shopcar';
+                    }
+                }
+            })
+        })
+    })
+</script>
+
+</html>
